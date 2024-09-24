@@ -9,5 +9,19 @@
 </head>
 <body>
     <h1>Welcome!</h1>
+
+    <form method="GET" action="">
+        <input type="submit" class="btn" value="Show my tasks" name="mybtn">
+    </form>
+
+    {% if tasks %}
+        <ul>
+            {% for task in tasks %}
+                <li>{{ task.description }} - {{ task.date }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No tasks available.</p>
+    {% endif %}
 </body>
 </html>
