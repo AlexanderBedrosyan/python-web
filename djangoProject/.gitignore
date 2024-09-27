@@ -1,9 +1,9 @@
 db.sqlite3
 
+.idea/
+
 **/.idea/
 
 .idea
 
 **/__pycache__/
-
-.idea/
