@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Success</h1>
+    {%  if url_path %}
+        <p>Url: {{ url_path }}</p>
+    {% else %}
+        <p>There is no url path added</p>
+    {% endif %}
+    <p>==========================================================================</p>
+    {%  if first_name %}
+        <p>First Name: {{ first_name }}</p>
+    {% else %}
+        <p>There is no first name added</p>
+    {% endif %}
+    <p>==========================================================================</p>
+    {%  if comment %}
+        <p>Comment: {{ comment }}</p>
+    {% else %}
+        <p>There is no comment added</p>
+    {% endif %}
+    <p>==========================================================================</p>
+    {%  if choice_field %}
+        <p>Select option: {{ choice_field }}</p>
+    {% else %}
+        <p>There is no select option</p>
+    {% endif %}
+    <p>==========================================================================</p>
+    {%  if radio_field %}
+        <p>Radio select option: {{ radio_field }}</p>
+    {% else %}
+        <p>There is no radio select option</p>
+    {% endif %}
+    <p>==========================================================================</p>
+    {%  if checkbox_field %}
+        <p>Check box field: {{ checkbox_field }}</p>
+    {% else %}
+        <p>There is no checkbox field</p>
+    {% endif %}
+    <p>==========================================================================</p>
+    {%  if title %}
+        <p>Inherit box: {{ title }}</p>
+    {% else %}
+        <p>There is no inherit field</p>
+    {% endif %}
+    <p>==========================================================================</p>
+</body>
+</html>
