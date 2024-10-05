@@ -5,3 +5,8 @@ from .models import *
 @admin.register(ToDoList)
 class ToDoListAdmin(admin.ModelAdmin):
     pass
+
+
+@admin.register(Person)
+class PersonAdmin(admin.ModelAdmin):
+    pass
