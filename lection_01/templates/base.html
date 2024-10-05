@@ -23,5 +23,65 @@
     {% else %}
         <p>No tasks available.</p>
     {% endif %}
+
+    <p>======================================================================================</p>
+    <h2>First Form/Label option (NameForm in forms.py and forms in views.py)</h2>
+    <form action="forms" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+{#        <label for="name">Your Name</label>#}
+{#        <input type="text" id="name" name="name" maxlength="50" required>#}
+        <input type="submit" value="OK">
+    </form>
+    <p>======================================================================================</p>
+    <h2>Url form/Initial argument (Url in form.py and forms in views.py)</h2>
+    <form action="diff_form_fields" method="post">
+        {% csrf_token %}
+        {{ url.as_p }}
+        <input type="submit" value="OK">
+    </form>
+    <p>======================================================================================</p> 
+    <h2>Help Text (HelpText in form.py and forms in views.py)</h2>
+    <form action="diff_form_fields" method="post">
+        {% csrf_token %}
+        {{ help_text.as_p }}
+        <input type="submit" value="OK">
+    </form>
+    <p>======================================================================================</p> 
+    <h2>Standard Widget (Comment in form.py and forms in views.py)</h2>
+    <form action="diff_form_fields" method="post">
+        {% csrf_token %}
+        {{ comment.as_p }}
+        <input type="submit" value="OK">
+    </form>
+    <p>======================================================================================</p> 
+    <h2>Select List Widget (SelectOptionForm in form.py and forms in views.py)</h2>
+    <form action="diff_form_fields" method="post">
+        {% csrf_token %}
+        {{ select_option.as_p }}
+        <input type="submit" value="OK">
+    </form>
+    <p>======================================================================================</p> 
+    <h2>Radio Button Widget (RadioButtonForm in form.py and forms in views.py)</h2>
+    <form action="diff_form_fields" method="post">
+        {% csrf_token %}
+        {{ radio_button.as_p }}
+        <input type="submit" value="OK">
+    </form>
+    <p>======================================================================================</p>
+    <h2>Check Box Widget (CheckBoxForm in form.py and forms in views.py)</h2>
+    <form action="diff_form_fields" method="post">
+        {% csrf_token %}
+        {{ check_box.as_p }}
+        <input type="submit" value="OK">
+    </form>
+    <p>======================================================================================</p> 
+    <h2>Inherit Model Widget (InheritModelForm in form.py and forms in views.py)</h2>
+    <form action="diff_form_fields" method="post">
+        {% csrf_token %}
+        {{ inherit_model.as_p }}
+        <input type="submit" value="OK">
+    </form>
+    <p>======================================================================================</p>
 </body>
 </html>
