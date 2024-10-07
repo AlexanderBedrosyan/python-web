@@ -1,5 +1,6 @@
+from django.forms import modelform_factory, formset_factory
 from django.shortcuts import render, HttpResponse, redirect
-from .models import ToDoList
+from .models import ToDoList, Person
 from .forms import (NameForm, Url, HelpText, Comment, SelectOptionForm, RadioButtonForm, CheckBoxForm, InheritModelForm,
                     BookForm, PersonForm)
 
@@ -124,3 +125,42 @@ def forms_advanced(request):
 
     return render(request, "forms_advanced.html", context)
 
+
+def modelform_factory_views(request):
+    person = modelform_factory(Person, fields=['first_name', 'last_name', 'birth_date'])
+    BookFormSet = formset_factory(BookForm, extra=3)
+
+    if request.method == "POST":
+        form = Person(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = person
+
+    if request.method == 'POST':
+        formset = BookFormSet(request.POST)
+        if formset.is_valid():
+            for curr_form in formset:
+                if curr_form.cleaned_dat:
+                    curr_form.save()
+    else:
+        formset = BookFormSet
+
+    return render(request, 'modelform_factory.html', {'form': form, 'formset': formset})
+
+
+BookFormSet = formset_factory(BookForm, extra=3)
+
+def manage_books(request):
+    if request.method == 'POST':
+        # При пост заявка, събираме и валидираме формите
+        formset = BookFormSet(request.POST)
+        if formset.is_valid():
+            for form in formset:
+                if form.cleaned_data:  # Проверяваме дали формата е попълнена
+                    form.save()
+    else:
+        # При GET заявка, показваме празен formset с 3 празни форми
+        formset = BookFormSet()
+
+    return render(request, 'manage_books.html', {'formset': formset})
