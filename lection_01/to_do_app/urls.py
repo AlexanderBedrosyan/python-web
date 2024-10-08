@@ -1,6 +1,6 @@
 from django.urls import path
 from django.conf.urls import handler404
-from . import views
+from to_do_app import views
 
 handler404 = 'to_do_app.views.custom_404'
 
