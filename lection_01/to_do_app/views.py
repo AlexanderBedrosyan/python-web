@@ -1,7 +1,7 @@
 from django.forms import modelform_factory, formset_factory
 from django.shortcuts import render, HttpResponse, redirect
-from .models import ToDoList, Person
-from .forms import (NameForm, Url, HelpText, Comment, SelectOptionForm, RadioButtonForm, CheckBoxForm, InheritModelForm,
+from to_do_app.models import ToDoList, Person
+from to_do_app.forms import (NameForm, Url, HelpText, Comment, SelectOptionForm, RadioButtonForm, CheckBoxForm, InheritModelForm,
                     BookForm, PersonForm)
 
 # Create your views here.
@@ -131,7 +131,7 @@ def modelform_factory_views(request):
     BookFormSet = formset_factory(BookForm, extra=3)
 
     if request.method == "POST":
-        form = Person(request.POST)
+        form = PersonForm(request.POST)
         if form.is_valid():
             form.save()
     else:
