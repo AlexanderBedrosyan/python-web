@@ -5,7 +5,7 @@ from djangoProject.photos.models import Photo
 
 
 class Like(models.Model):
-    to_photo = models.ForeignKey(to=Photo, on_delete=models.CASCADE)
+    to_photo = models.ForeignKey(to=Photo, on_delete=models.CASCADE, related_name='likes')
 
 class Comment(models.Model):
     text = models.TextField(max_length=300)
