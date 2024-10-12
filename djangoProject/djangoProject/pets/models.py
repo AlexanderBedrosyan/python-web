@@ -12,10 +12,11 @@ class Pet(models.Model):
     slug = models.SlugField(unique=True, blank=True, null=False, editable=False)
 
     def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
         if not self.slug:
             self.slug = slugify(f"{self.name} - {self.id}")
 
-        return super().save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
