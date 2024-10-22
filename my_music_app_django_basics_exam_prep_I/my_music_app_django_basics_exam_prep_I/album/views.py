@@ -17,12 +17,23 @@ class AddView(CreateView):
 
     def post(self, request, *args, **kwargs):
         profile = Profile.objects.all().last()
-        form = self.get_form()
-        print(request.GET.album_name)
+        album_name = request.POST.get('album_name')
+        artist = request.POST.get('artist')
+        genre = request.POST.get('genre')
+        description = request.POST.get('description')
+        image = request.POST.get('image')
+        price = request.POST.get('price')
+        album = Album(
+            album_name=album_name,
+            artist=artist,
+            genre=genre,
+            description=description,
+            image=image,
+            price=price,
+            owner=profile
+        )
 
-        if form.is_valid():
-            album = form.save(commit=False)
-            album.owner = profile
+        if album:
             album.save()
             return redirect(self.success_url)
         return render(request, 'album-add.html', context={'form': AlbumForm})
