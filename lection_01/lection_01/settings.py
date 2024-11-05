@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'to_do_app',
     'relations',
-    'cbv_testing'
+    'cbv_testing',
+    'user_tests'
 ]
 
 MIDDLEWARE = [
