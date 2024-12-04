@@ -1,0 +1,62 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#    <link rel="stylesheet" href="/style/style.css">#}
+{#    <title>WorldOfSpeed</title>#}
+{#</head>#}
+{#<body>#}
+{#  <header>#}
+{#        <!-- Navigation Bar -->#}
+{#        <h1><a class="index-navigation" href="#"#}
+{#          ><span>World of Speed</span></a#}
+{#        ></h1>#}
+{#        <nav>#}
+{#            <a href="#">Catalogue</a>#}
+{#            <a href="#">Create Car</a>#}
+{#            <a href="#">Profile</a>#}
+{#        </nav>#}
+{#    </header>#}
+{##}
+{#  <section id="create-page" class="auth">#}
+{##}
+{#      <div class="container">#}
+{#        <h1>Are you sure you want to delete your profile?</h1>#}
+{#          <!-- Delete Profile Form -->#}
+{#        <form id='delete'>#}
+{##}
+{#        <!-- Confirm Button -->#}
+{#        <input class="btn submit" type="submit" value="Yes">#}
+{##}
+{#        </form>#}
+{#      </div>#}
+{#    <!-- End Delete Profile Form -->#}
+{#  </section>#}
+{#  <!-- Footer -->#}
+{#  <footer>#}
+{#      &copy;SoftUni Team 2024. All rights reserved.#}
+{#  </footer>#}
+{#  <!-- End Footer -->#}
+{#</body>#}
+{#</html>#}
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <section id="create-page" class="auth">
+
+      <div class="container">
+        <h1>Are you sure you want to delete your profile?</h1>
+          <!-- Delete Profile Form -->
+        <form id='delete' method="POST">
+            {% csrf_token %}
+
+        <!-- Confirm Button -->
+        <input class="btn submit" type="submit" value="Yes">
+
+        </form>
+      </div>
+    <!-- End Delete Profile Form -->
+  </section>
+{% endblock %}

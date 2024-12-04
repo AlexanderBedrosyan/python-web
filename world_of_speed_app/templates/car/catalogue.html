@@ -1,0 +1,148 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#  <head>#}
+{#    <meta charset="UTF-8" />#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0" />#}
+{#    <link rel="stylesheet" href="/style/style.css" />#}
+{#    <title>WorldOfSpeed</title>#}
+{#  </head>#}
+{##}
+{#  <body>#}
+{#    <div id="box">#}
+{#      <header>#}
+{#        <!-- Navigation Bar -->#}
+{#        <h1>#}
+{#          <a class="index-navigation" href="#"#}
+{#            ><span>World of Speed</span></a#}
+{#          >#}
+{#        </h1>#}
+{#        <nav>#}
+{#          <a href="#">Catalogue</a>#}
+{#          <a href="#">Create Car</a>#}
+{#          <a href="#">Profile</a>#}
+{#        </nav>#}
+{#      </header>#}
+{##}
+{#      <!-- Display a paragraph: If there are no cars yet-->#}
+{#      <p class="no-articles">No cars yet</p>#}
+{##}
+{#      <!-- Display a card with information about each car (if any)-->#}
+{##}
+{#      <section id="catalogue">#}
+{#        <h1>Total cars: 4</h1>#}
+{##}
+{#        <!-- first car-->#}
+{#        <div class="car-card">#}
+{#          <div class="image-wrap">#}
+{#            <!-- car image -->#}
+{#            <img#}
+{#              src="https://cdn.pixabay.com/photo/2017/06/19/19/05/rally-2420637_1280.jpg"#}
+{#              alt="Rally"#}
+{#            />#}
+{#          </div>#}
+{#          <!-- car type -->#}
+{#          <h3>Rally</h3>#}
+{#          <!-- car model -->#}
+{#          <h1>Ford Puma M</h1>#}
+{#          <div class="details-buttons">#}
+{#            <!-- car details button -->#}
+{#            <a href="#" class="details-btn">Details</a>#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <!-- second car-->#}
+{#        <div class="car-card">#}
+{#          <div class="image-wrap">#}
+{#            <!-- car image -->#}
+{#            <img#}
+{#              src="https://cdn.pixabay.com/photo/2021/09/02/09/54/kart-6593070_1280.jpg"#}
+{#              alt="Kart"#}
+{#            />#}
+{#          </div>#}
+{#          <!-- car type -->#}
+{#          <h3>Kart</h3>#}
+{#          <!-- car model -->#}
+{#          <h1>K 2000</h1>#}
+{#          <div class="details-buttons">#}
+{#            <!-- car details button -->#}
+{#            <a href="#" class="details-btn">Details</a>#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <!-- third car-->#}
+{#        <div class="car-card">#}
+{#          <div class="image-wrap">#}
+{#            <!-- car image -->#}
+{#            <img#}
+{#              src="https://cdn.pixabay.com/photo/2014/10/16/01/50/ferrari-490617_1280.jpg"#}
+{#              alt="Open-wheel"#}
+{#            />#}
+{#          </div>#}
+{#          <!-- car type -->#}
+{#          <h3>Open-wheel</h3>#}
+{#          <!-- car model -->#}
+{#          <h1>Ferrari F1</h1>#}
+{#          <div class="details-buttons">#}
+{#            <!-- car details button -->#}
+{#            <a href="#" class="details-btn">Details</a>#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <!-- fourth car-->#}
+{#        <div class="car-card">#}
+{#          <div class="image-wrap">#}
+{#            <!-- car image -->#}
+{#            <img#}
+{#              src="https://cdn.pixabay.com/photo/2017/02/18/03/57/diesel-2076482_1280.jpg"#}
+{#              alt="Drag"#}
+{#            />#}
+{#          </div>#}
+{#          <!-- car type -->#}
+{#          <h3>Drag</h3>#}
+{#          <!-- car model -->#}
+{#          <h1>F-250</h1>#}
+{#          <div class="details-buttons">#}
+{#            <!-- car details button -->#}
+{#            <a href="#" class="details-btn">Details</a>#}
+{#          </div>#}
+{#        </div>#}
+{#      </section>#}
+{##}
+{#      <!-- footer -->#}
+{#      <footer>&copy;SoftUni Team 2024. All rights reserved.</footer>#}
+{#    </div>#}
+{#  </body>#}
+{#</html>#}
+
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if not all_cars %}
+        <!-- Display a paragraph: If there are no cars yet-->
+        <p class="no-articles">No cars yet</p>
+    {% else %}
+
+        <!-- Display a card with information about each car (if any)-->
+        <section id="catalogue">
+            <h1>Total cars: {{ all_cars.count }}</h1>
+            {% for car in all_cars %}
+                <!-- first car-->
+                <div class="car-card">
+                    <div class="image-wrap">
+                        <!-- car image -->
+                        <img src="{{ car.image }}" alt="Rally">
+                    </div>
+                    <!-- car type -->
+                    <h3>{{ car.type }}</h3>
+                    <!-- car model -->
+                    <h1>{{ car.model }}</h1>
+                    <div class="details-buttons">
+                        <!-- car details button -->
+                        <a href="{% url 'car-details' car.id %}" class="details-btn">Details</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </section>
+    {% endif %}
+{% endblock %}
+

@@ -1,0 +1,92 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#  <head>#}
+{#    <meta charset="UTF-8" />#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0" />#}
+{#    <link rel="stylesheet" href="/style/style.css" />#}
+{#    <title>WorldOfSpeed</title>#}
+{#  </head>#}
+{##}
+{#  <body>#}
+{#    <div id="box">#}
+{#      <header>#}
+{#        <!-- Navigation Bar -->#}
+{#        <h1>#}
+{#          <a class="index-navigation" href="#"#}
+{#          ><span>World of Speed</span></a#}
+{#        >#}
+{#        </h1>#}
+{#        <nav>#}
+{#          <a href="#">Catalogue</a>#}
+{#          <a href="#">Create Car</a>#}
+{#          <a href="#">Profile</a>#}
+{#        </nav>#}
+{#      </header>#}
+{##}
+{#      <!-- details section -->#}
+{#      <section id="car-details">#}
+{#        <h1>Car Details</h1>#}
+{#        <div class="info-section">#}
+{#          <div class="car-header">#}
+{#            <!-- car image -->#}
+{#            <img#}
+{#              class="car-img"#}
+{#              src="https://cdn.pixabay.com/photo/2017/06/19/19/05/rally-2420637_1280.jpg"#}
+{#              alt="car image"#}
+{#            />#}
+{#            <!-- car type -->#}
+{#            <h1>Rally</h1>#}
+{#            <!-- car model -->#}
+{#            <p><span class="description">Model: Ford Puma M</span></p>#}
+{#            <!-- car year -->#}
+{#            <p><span class="description">Year: 2017</span></p>#}
+{#            <!-- car price -->#}
+{#            <p><span class="description">Price: 85000.000</span></p>#}
+{#          </div>#}
+{##}
+{#          <!-- Edit/Delete buttons -->#}
+{#          <div class="buttons">#}
+{#            <a href="#" class="edit-button">Edit</a>#}
+{#            <a href="#" class="delete-button">Delete</a>#}
+{#          </div>#}
+{#        </div>#}
+{#      </section>#}
+{##}
+{#      <!-- footer -->#}
+{#      <footer>&copy;SoftUni Team 2024. All rights reserved.</footer>#}
+{#    </div>#}
+{#  </body>#}
+{#</html>#}
+
+{% extends 'base.html' %}
+
+{% block content %}
+          <!-- details section -->
+      <section id="car-details">
+        <h1>Car Details</h1>
+        <div class="info-section">
+          <div class="car-header">
+            <!-- car image -->
+            <img
+              class="car-img"
+              src="{{ car.image}}"
+              alt="car image"
+            />
+            <!-- car type -->
+            <h1>Rally</h1>
+            <!-- car model -->
+            <p><span class="description">Model: {{ car.model }}</span></p>
+            <!-- car year -->
+            <p><span class="description">Year: {{ car.year }}</span></p>
+            <!-- car price -->
+            <p><span class="description">Price: {{ car.price|floatformat:3 }}</span></p>
+          </div>
+
+          <!-- Edit/Delete buttons -->
+          <div class="buttons">
+            <a href="{% url 'edit-car' car.id %}" class="edit-button">Edit</a>
+            <a href="{% url 'delete_car' car.id %}" class="delete-button">Delete</a>
+          </div>
+        </div>
+      </section>
+{% endblock %}

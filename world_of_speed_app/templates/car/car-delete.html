@@ -1,0 +1,111 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#  <head>#}
+{#    <meta charset="UTF-8" />#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0" />#}
+{#    <link rel="stylesheet" href="/style/style.css" />#}
+{#    <title>WorldOfSpeed</title>#}
+{#  </head>#}
+{##}
+{#  <body>#}
+{#    <div id="box">#}
+{#      <header>#}
+{#        <!-- Navigation Bar -->#}
+{#        <h1>#}
+{#          <a class="index-navigation" href="#"#}
+{#            ><span>World of Speed</span></a#}
+{#          >#}
+{#        </h1>#}
+{#        <nav>#}
+{#          <a href="#">Catalogue</a>#}
+{#          <a href="#">Create Car</a>#}
+{#          <a href="#">Profile</a>#}
+{#        </nav>#}
+{#      </header>#}
+{##}
+{#      <!-- delete car form -->#}
+{#      <section id="delete-page" class="auth">#}
+{#        <form id="delete">#}
+{#          <div class="container">#}
+{#            <h1>Delete Car</h1>#}
+{#            <label for="type">Type:</label>#}
+{#            <select name="type" disabled required="" id="type">#}
+{#              <option value="">---------</option>#}
+{#              <option value="Rally" selected="">Rally</option>#}
+{#              <option value="Open-wheel">Open-wheel</option>#}
+{#              <option value="Kart">Kart</option>#}
+{#              <option value="Drag">Drag</option>#}
+{#              <option value="Other">Other</option>#}
+{#            </select>#}
+{#            <label for="model">Model:</label>#}
+{#            <input#}
+{#              type="text"#}
+{#              name="model"#}
+{#              value="Ford"#}
+{#              maxlength="20"#}
+{#              disabled="disabled"#}
+{#              readonly="readonly"#}
+{#              required=""#}
+{#              id="model"#}
+{#            />#}
+{##}
+{#            <label for="year">Year:</label>#}
+{#            <input#}
+{#              type="number"#}
+{#              name="year"#}
+{#              value="2017"#}
+{#              disabled="disabled"#}
+{#              readonly="readonly"#}
+{#              required=""#}
+{#              id="year"#}
+{#            />#}
+{##}
+{#            <label for="image_url">Image URL:</label>#}
+{#            <input#}
+{#              type="url"#}
+{#              name="image_url"#}
+{#              value="https://cdn.pixabay.com/photo/2017/06/19/19/05/rally-2420637_1280.jpg"#}
+{#              disabled="disabled"#}
+{#              readonly="readonly"#}
+{#              required=""#}
+{#              id="image_url"#}
+{#            />#}
+{##}
+{#            <label for="price">Price:</label>#}
+{#            <input#}
+{#              type="number"#}
+{#              name="price"#}
+{#              value="85000.0"#}
+{#              step="any"#}
+{#              disabled="disabled"#}
+{#              readonly="readonly"#}
+{#              required=""#}
+{#              id="price"#}
+{#            />#}
+{##}
+{#            <input class="btn submit" type="submit" value="Delete Car" />#}
+{#          </div>#}
+{#        </form>#}
+{#      </section>#}
+{##}
+{#      <!-- footer -->#}
+{#      <footer>&copy;SoftUni Team 2024. All rights reserved.</footer>#}
+{#    </div>#}
+{#  </body>#}
+{#</html>#}
+
+{% extends 'base.html' %}
+
+{% block content %}
+      <section id="delete-page" class="auth">
+        <form id="delete" method="POST">
+            {% csrf_token %}
+          <div class="container">
+            <h1>Delete Car</h1>
+              {{ form }}
+
+            <input class="btn submit" type="submit" value="Delete Car" />
+          </div>
+        </form>
+      </section>
+{% endblock %}
