@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <main>
+        <!-- Edit Post Form -->
+        <section id="edit">
+            <div class="form">
+                <h2>Edit Post</h2>
+
+                <form class="edit-form" method="POST" action="">
+                    {% csrf_token %}
+                    {% for current_form in form %}
+                        {{ current_form.errors }}
+                        {{ current_form.label_tag }}
+                        <div class="helptext" id="id_passcode_helptext">{{ current_form.help_text }}</div>
+                        {{ current_form }}
+                    {% endfor %}
+
+                    <!-- form button -->
+                    <button type="submit">Edit</button>
+                </form>
+            </div>
+        </section>
+    </main>
+{% endblock %}
