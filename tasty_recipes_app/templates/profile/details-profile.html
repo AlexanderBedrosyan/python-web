@@ -1,0 +1,122 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#  <head>#}
+{#    <meta charset="UTF-8" />#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0" />#}
+{#    <link rel="stylesheet" href="/style/style.css" />#}
+{#    <title>TastyRecipesApp</title>#}
+{#  </head>#}
+{##}
+{#  <body>#}
+{#    <div id="box">#}
+{#      <header>#}
+{#        <!-- Navigation Bar -->#}
+{#        <h1><a class="index-navigation" href="#">Tasty Recipes</a></h1>#}
+{#        <nav>#}
+{#          <!-- if the user has not created a profile -->#}
+{#          <a href="#">Create Profile</a>#}
+{##}
+{#          <!-- if the user has created a profile -->#}
+{#          <a href="#">Catalogue</a>#}
+{#          <a href="#">Create Recipe</a>#}
+{#          <a href="#">Profile</a>#}
+{#        </nav>#}
+{#      </header>#}
+{##}
+{#      <!-- profile details section -->#}
+{#      <section id="recipe-details">#}
+{#        <h1>Profile Details</h1>#}
+{#        <div class="info-section">#}
+{#          <div class="recipe-header">#}
+{#            <!-- default profile image -->#}
+{#            <!-- if the user is not a chef - a default image - no_chef_img.png -->#}
+{#            <!-- if the user is a chef - a default image - chef_img.png -->#}
+{##}
+{#            <img#}
+{#              class="recipe-img"#}
+{#              src="/images/chef_img.png"#}
+{#              alt="profile-image"#}
+{#            />#}
+{##}
+{#            <!-- profile full name -->#}
+{#            <h1>Fname Lname</h1>#}
+{##}
+{#            <!-- profile nickname -->#}
+{#            <p class="description">Nickname: testuser</p>#}
+{##}
+{#            <!-- profile bio -->#}
+{#            <!-- if no profile bio - display 'N/A' -->#}
+{##}
+{#            <p class="description">Bio: N/A</p>#}
+{##}
+{#            <!-- total number of published recipes -->#}
+{#            <p class="description">Published recipes: 3</p>#}
+{##}
+{#            <!-- Edit/Delete buttons -->#}
+{#            <div class="buttons">#}
+{#              <a href="#" class="edit-button">Edit</a>#}
+{#              <a href="#" class="delete-button">Delete</a>#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{#      </section>#}
+{##}
+{#      <!-- footer -->#}
+{#      <footer>&copy;SoftUni Team 2024. All rights reserved.</footer>#}
+{#    </div>#}
+{#  </body>#}
+{#</html>#}
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+          <!-- profile details section -->
+      <section id="recipe-details">
+        <h1>Profile Details</h1>
+        <div class="info-section">
+          <div class="recipe-header">
+            <!-- default profile image -->
+            <!-- if the user is not a chef - a default image - no_chef_img.png -->
+            <!-- if the user is a chef - a default image - chef_img.png -->
+              {% if object.chef %}
+            <img
+              class="recipe-img"
+              src="{% static 'images/chef_img.png' %}"
+              alt="profile-image"
+            />
+              {% else %}
+                          <img
+              class="recipe-img"
+              src="{% static 'images/no_chef_img.png' %}"
+              alt="profile-image"
+            />
+              {% endif %}
+
+            <!-- profile full name -->
+            <h1>{{ object.first_name }} {{ object.last_name }}</h1>
+
+            <!-- profile nickname -->
+            <p class="description">Nickname: {{ object.nickname }}</p>
+
+            <!-- profile bio -->
+            <!-- if no profile bio - display 'N/A' -->
+            {% if object.bio %}
+                <p class="description">Bio: {{ object.bio }}</p>
+            {% else %}
+            <p class="description">Bio: N/A</p>
+            {% endif %}
+            
+
+            <!-- total number of published recipes -->
+            <p class="description">Published recipes: {{ object.authors.all.count }}</p>
+
+            <!-- Edit/Delete buttons -->
+            <div class="buttons">
+              <a href="{% url 'edit-profile' %}" class="edit-button">Edit</a>
+              <a href="{% url 'delete-profile' %}" class="delete-button">Delete</a>
+            </div>
+          </div>
+        </div>
+      </section>
+{% endblock %}
