@@ -1,0 +1,153 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#  <head>#}
+{#    <meta charset="UTF-8" />#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0" />#}
+{#    <link rel="stylesheet" href="/style/style.css" />#}
+{#    <title>TastyRecipesApp</title>#}
+{#  </head>#}
+{##}
+{#  <body>#}
+{#    <div id="box">#}
+{#      <header>#}
+{#        <!-- Navigation Bar -->#}
+{#        <h1><a class="index-navigation" href="#">Tasty Recipes</a></h1>#}
+{#        <nav>#}
+{#          <!-- if the user has not created a profile -->#}
+{#          <a href="#">Create Profile</a>#}
+{##}
+{#          <!-- if the user has created a profile -->#}
+{#          <a href="#">Catalogue</a>#}
+{#          <a href="#">Create Recipe</a>#}
+{#          <a href="#">Profile</a>#}
+{#        </nav>#}
+{#      </header>#}
+{##}
+{#      <!-- Display paragraph: If there are no recipes yet-->#}
+{#      <p class="no-articles">There are currently no recipes available.</p>#}
+{##}
+{#      <!-- Display a card with information about each recipe (if any)-->#}
+{#      <section id="catalogue">#}
+{#        <!-- first recipe-->#}
+{#        <div class="recipe-card">#}
+{#          <div class="image-wrap">#}
+{#            <!-- recipe image -->#}
+{#            <!-- if there is no image url provided, display the default recipe image -->#}
+{##}
+{#            <img#}
+{#              class="recipe-img"#}
+{#              src="https://cdn.pixabay.com/photo/2016/12/27/21/22/salad-1934944_1280.jpg"#}
+{#              alt="recipe image"#}
+{#            />#}
+{#          </div>#}
+{#          <!-- recipe title -->#}
+{#          <h3>Caprese Salad</h3>#}
+{#          <!-- recipe cooking time -->#}
+{#          <h1>Cooking time: 10min.</h1>#}
+{#          <!-- recipe instructions -->#}
+{#          <h1>Slice the tomatoes and mozzarella …</h1>#}
+{#          <div class="details-buttons">#}
+{#            <!-- recipe details button -->#}
+{#            <a href="" class="details-btn">Details</a>#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <!-- second recipe-->#}
+{#        <div class="recipe-card">#}
+{#          <div class="image-wrap">#}
+{#            <!-- recipe image -->#}
+{#            <!-- if there is no image url provided, display the default recipe image -->#}
+{##}
+{#            <img#}
+{#              class="recipe-img"#}
+{#              src="/images/default_recipe_img.png"#}
+{#              alt="recipe image"#}
+{#            />#}
+{#          </div>#}
+{#          <!-- recipe title -->#}
+{#          <h3>Pasta Aglio e Olio</h3>#}
+{#          <!-- recipe cooking time -->#}
+{#          <h1>Cooking time: 25min.</h1>#}
+{#          <!-- recipe instructions -->#}
+{#          <h1>Cook spaghetti according to packag…</h1>#}
+{#          <div class="details-buttons">#}
+{#            <!-- recipe details button -->#}
+{#            <a href="" class="details-btn">Details</a>#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <!-- third recipe-->#}
+{#        <div class="recipe-card">#}
+{#          <div class="image-wrap">#}
+{#            <!-- recipe image -->#}
+{#            <!-- if there is no image url provided, display the default recipe image -->#}
+{##}
+{#            <img#}
+{#              class="recipe-img"#}
+{#              src="/images/default_recipe_img.png"#}
+{#              alt="recipe image"#}
+{#            />#}
+{#          </div>#}
+{#          <!-- recipe title -->#}
+{#          <h3>Avocado Toast</h3>#}
+{#          <!-- recipe cooking time -->#}
+{#          <h1>Cooking time: 12min.</h1>#}
+{#          <!-- recipe instructions -->#}
+{#          <h1>Toast slices of whole grain bread …</h1>#}
+{#          <div class="details-buttons">#}
+{#            <!-- recipe details button -->#}
+{#            <a href="" class="details-btn">Details</a>#}
+{#          </div>#}
+{#        </div>#}
+{#      </section>#}
+{##}
+{#      <!-- footer -->#}
+{#      <footer>&copy;SoftUni Team 2024. All rights reserved.</footer>#}
+{#    </div>#}
+{#  </body>#}
+{#</html>#}
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+        {% if not recipies %}
+      <p class="no-articles">There are currently no recipes available.</p>
+        {% else %}
+        {% for recipe in recipies %}
+      <!-- Display a card with information about each recipe (if any)-->
+      <section id="catalogue">
+        <!-- first recipe-->
+        <div class="recipe-card">
+          <div class="image-wrap">
+            <!-- recipe image -->
+            <!-- if there is no image url provided, display the default recipe image -->
+            {% if recipe.image %}
+            <img
+              class="recipe-img"
+              src="{{ recipe.image }}"
+              alt="recipe image"
+            />                
+            {% else %}
+            <img
+              class="recipe-img"
+              src="{% static 'images/default_recipe_img.png' %}"
+              alt="recipe image"
+            />
+            {% endif %}
+          </div>
+          <!-- recipe title -->
+          <h3>{{ recipe.title }}</h3>
+          <!-- recipe cooking time -->
+          <h1>Cooking time: {{ recipe.cooking_time }}min.</h1>
+          <!-- recipe instructions -->
+          <h1>{{ recipe.instructions }}</h1>
+          <div class="details-buttons">
+            <!-- recipe details button -->
+            <a href="{% url 'details-recipe' recipe.id %}" class="details-btn">Details</a>
+          </div>
+        </div>
+      </section>
+            {% endfor %}
+        {% endif %}
+{% endblock %}
