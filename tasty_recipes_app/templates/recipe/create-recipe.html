@@ -1,0 +1,156 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#  <head>#}
+{#    <meta charset="UTF-8" />#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0" />#}
+{#    <link rel="stylesheet" href="/style/style.css" />#}
+{#    <title>TastyRecipesApp</title>#}
+{#  </head>#}
+{##}
+{#  <body>#}
+{#    <div id="box">#}
+{#      <header>#}
+{#        <!-- Navigation Bar -->#}
+{#        <h1><a class="index-navigation" href="#">Tasty Recipes</a></h1>#}
+{#        <nav>#}
+{#          <!-- if the user has not created a profile -->#}
+{#          <a href="#">Create Profile</a>#}
+{##}
+{#          <!-- if the user has created a profile -->#}
+{#          <a href="#">Catalogue</a>#}
+{#          <a href="#">Create Recipe</a>#}
+{#          <a href="#">Profile</a>#}
+{#        </nav>#}
+{#      </header>#}
+{##}
+{#      <!-- create recipe form -->#}
+{#      <section id="create-page" class="auth">#}
+{#        <form id="create" method="">#}
+{#          <div class="container">#}
+{#            <h1 class="form-create-headline">Create Recipe</h1>#}
+{#            <div>#}
+{#              <label for="id_title">Title:</label>#}
+{##}
+{#              <input#}
+{#                type="text"#}
+{#                name="title"#}
+{#                maxlength="100"#}
+{#                required#}
+{#                id="id_title"#}
+{#              />#}
+{#            </div>#}
+{##}
+{#            <div>#}
+{#              <label for="id_cuisine_type">Cuisine Type:</label>#}
+{##}
+{#              <select name="cuisine_type" required id="id_cuisine_type">#}
+{#                <option value="" selected>---------</option>#}
+{##}
+{#                <option value="French">French</option>#}
+{##}
+{#                <option value="Chinese">Chinese</option>#}
+{##}
+{#                <option value="Italian">Italian</option>#}
+{##}
+{#                <option value="Balkan">Balkan</option>#}
+{##}
+{#                <option value="Other">Other</option>#}
+{#              </select>#}
+{#            </div>#}
+{##}
+{#            <div>#}
+{#              <label for="id_ingredients">Ingredients:</label>#}
+{##}
+{#              <div class="helptext" id="id_ingredients_helptext">#}
+{#                Ingredients must be separated by a comma and space.#}
+{#              </div>#}
+{##}
+{#              <textarea#}
+{#                name="ingredients"#}
+{#                cols="40"#}
+{#                rows="10"#}
+{#                placeholder="ingredient1, ingredient2, ..."#}
+{#                required#}
+{#                aria-describedby="id_ingredients_helptext"#}
+{#                id="id_ingredients"#}
+{#              ></textarea>#}
+{#            </div>#}
+{##}
+{#            <div>#}
+{#              <label for="id_instructions">Instructions:</label>#}
+{##}
+{#              <textarea#}
+{#                name="instructions"#}
+{#                cols="40"#}
+{#                rows="10"#}
+{#                placeholder="Enter detailed instructions here..."#}
+{#                required#}
+{#                id="id_instructions"#}
+{#              ></textarea>#}
+{#            </div>#}
+{##}
+{#            <div>#}
+{#              <label for="id_cooking_time">Cooking Time:</label>#}
+{##}
+{#              <div class="helptext" id="id_cooking_time_helptext">#}
+{#                Provide the cooking time in minutes.#}
+{#              </div>#}
+{##}
+{#              <input#}
+{#                type="number"#}
+{#                name="cooking_time"#}
+{#                min="0"#}
+{#                required#}
+{#                aria-describedby="id_cooking_time_helptext"#}
+{#                id="id_cooking_time"#}
+{#              />#}
+{#            </div>#}
+{##}
+{#            <div>#}
+{#              <label for="id_image_url">Image URL:</label>#}
+{##}
+{#              <input#}
+{#                type="url"#}
+{#                name="image_url"#}
+{#                placeholder="Optional image URL here..."#}
+{#                maxlength="200"#}
+{#                id="id_image_url"#}
+{#              />#}
+{#            </div>#}
+{#            <!-- create button -->#}
+{#            <input class="btn" type="submit" value="Create Recipe" />#}
+{#          </div>#}
+{#        </form>#}
+{#      </section>#}
+{##}
+{#      <!-- Footer -->#}
+{#      <footer>&copy;SoftUni Team 2024. All rights reserved.</footer>#}
+{#    </div>#}
+{#  </body>#}
+{#</html>#}
+
+{% extends 'base.html' %}
+
+{% block content %}
+      <!-- create recipe form -->
+      <section id="create-page" class="auth">
+        <form id="create" method="POST">
+            {% csrf_token %}
+            <div class="container">
+            <h1 class="form-create-headline">Create Recipe</h1>
+            <div>
+              {% for element in form %}
+                  {% if element.errors %}
+                      {{ element.errors }}
+                  {% endif %}
+                  {{ element.label_tag }}
+                  <div class="helptext">{{ element.help_text }}</div>
+                  {{ element }}
+              {% endfor %}
+            </div>
+            <!-- create button -->
+            <input class="btn" type="submit" value="Create Recipe" />
+          </div>
+        </form>
+      </section>
+{% endblock %}
